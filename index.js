@@ -66,7 +66,30 @@ document.getElementById('calculate').addEventListener('click', function () {
             document.getElementById('output').innerHTML = median;
             break;
 
-        case 'mode':
+       case 'mode':
+            var object = {}
+            for (var i = 0; i < list.length; i++) {
+                if (object[list[i]]) {
+                    // increment existing key's value
+                    object[list[i]] += 1
+                } else {
+                    // make a new key and set its value to 1
+                    object[list[i]] = 1
+                }
+            }
+            // assign a value guaranteed to be smaller than any number in the list
+            var biggestValue = -1
+            var biggestValuesKey = -1
+   
+            Object.keys(object).forEach(key => {
+                var value = object[key]
+                if (value > biggestValue) {
+                    biggestValue = value
+                    biggestValuesKey = key
+                }
+            })
+            document.getElementById('output').innerHTML = biggestValuesKey;
+            break;
 
         case 'range':
             var min = list[0];
